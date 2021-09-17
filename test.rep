@@ -1,0 +1,66 @@
+control bucket "tran"
+
+keys "" ()
+
+list DEBUG = "test.dbg" output
+
+
+process beginning
+    set DEBUG = "Start beginning"
+    
+    set DEBUG = "End beginning"
+endproc
+
+process prerun
+    set DEBUG = "Start prerun"
+
+    set DEBUG = "End prerun"
+endproc
+
+sort 
+
+process detail
+    set DEBUG = "Start detail"
+
+    set DEBUG = "End detail"
+endproc
+
+print
+
+process heading
+    set DEBUG = "Start heading"
+
+    set DEBUG = "End heading"
+endproc
+
+process ending
+    set DEBUG = "Start ending"
+
+    set DEBUG = "End ending"
+endproc 
+
+set this = concat("\"=\"\"", this)
+set this = concat(this, "\"\"\"") 
+
+
+prepass sadads
+    sort strd; break edit "" 
+    push asdasd
+
+    process detail
+        
+    endproc
+endpass
+
+prepass mypre
+    sort str; break edit ""  firstdo newKey
+    push 
+
+
+    process detail
+        
+    endproc
+    process newKey
+        
+    endproc
+endpass

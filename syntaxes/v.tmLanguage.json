@@ -1,0 +1,224 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "v",
+	"patterns": [
+		{
+			"include": "#number"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#names"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+			{
+				"name": "invalid",
+				"match": "(?<=^.{80}).*?$"
+			},
+			{
+				"name": "variable.other.constant",
+				"match": "(?<=(\\(|,|\\*|/|\\+|-|->))\\w*?\\s(\\w.*?\\s)*?\\w*?(?=(\\)|,|\\*|/|\\+|-|->|\\[))"
+			},
+			{
+				"name": "keyword.control",
+				"match": "\\s*?\\b(then|if|else|endif|dowhile|enddo|printif|elseprint|or|and|when)\\s"
+			},
+			{
+				"name": "string.regexp",
+				"match": "\\b(process|endproc|prepass|endpass|perform|thendo|firstdo)\\b"
+			},
+			{
+				"name": "support.class",
+				"match": "^\\s*?(control|select|keys|keysfrom|print|sort)\\b"
+			},
+			{
+				"name": "support.class",
+				"match": "\\b(break)\\b"
+			},
+			{
+				"name": "support.class",
+				"match": "\\b(output|input)\\s*?$"
+			},
+			{
+				"name": "support.function",
+				"match": "\\b(SingleAnswerOnly|spawn|reopen|SetTranNo|GetMktExRate|NextTranNoSilent|poolcopy|delete|create|CloseExtractFile|yield|leftstr|midstr|rightstr|substr|environment|length|FormatDate|FieldLookup|modulo|floor|ceiling|weekday|stripzero|StringToDate|round|edit|strip|KeySearch|stroffset|ucase|lcase|fieldsearch|dayson|monthson|yearson|dayof|monthof|yearof|log|exp|sqrt|longdate|setstringfield|dothealloc|clearalloc|create|subfields|concat|function|today|time|getlogin|OpenExtractFile|ColumnHeading|SaveCell|NextRow)\\("
+			},
+			{
+				"name": "support.function",
+				"match": "\\b(display|accept)\\b"
+			},
+			{
+				"name": "support.function",
+				"match": "(?<=process|prepass|perform)\\s\\w*?\\s"
+			},
+			{
+				"name": "support.function",
+				"match": "(?<=firstdo\\s)\\b\\w.*?(\\s|(?=thendo)|(?=!))"
+			},
+			{
+				"name": "support.function",
+				"match": "(?<=thendo\\s)\\b\\w.*?(\\s|(?=firstdo)|(?=!))"
+			},
+			{
+				"name": "entity.name.tag.css",
+				"match": "\\b(bucket|check|allfields|screenbreak|pagelength|pagewidth|heading|name|edit|centre|leftjust|rightjust|pos|endpos|total|level|weighted|under|scrap|putsort|reopen|function|nocolheads)\\s"
+			},
+			{
+				"name": "entity.name.tag.css",
+				"match": "\\s*?(scrap|putsort|edit)\\b"
+			},			
+			{
+				"name": "keyword.operator",
+				"match": "\\b(eq|ne|gt|ge|lt|le|seq|sne|sgt|slt|sle|str|strd|num|numd)\\b"
+			},
+			{
+				"name": "constant.numeric",
+				"match": "\\s*?(default|spool|newpage|dontscrap|attribute|default|calculate|prompt|validation)\\b"
+			},
+			{
+				"name": "storage",
+				"match": "^\\s*?(setpool|clearpool|set|variable|list|push)\\s"
+			
+			},
+			{
+				"name": "support.class",
+				"match": "\\s*?(?:#include|include).*?($|;)"
+			},
+			{
+				"name": "keyword.operator",
+				"match": "[^a-zA-Z\"!#\\d]+"
+			},
+			{
+				"name": "constant.numeric",
+				"match": "(?<=\\=\\<).*?(?=[A-Z])"
+			},
+			{
+				"name": "variable",
+				"match": "\\b[A-Z][A-Z]+\\b"
+			},
+			{
+				"name": "variable",
+				"match": "(?<=(\\(|,))(\\w|\\s)*?(?=\\))"
+			},
+			{
+				"name": "variable",
+				"match": "[\\w^\\d]"
+			}
+			]
+		},
+		"number": {
+			"name": "constant.numeric",
+			"patterns": [
+				{
+					"include": "#number-float"
+				},
+				{
+					"include": "#number-dec"
+				},
+				{
+					"include": "#number-hex"
+				},
+				{
+					"include": "#number-oct"
+				},
+				{
+					"include": "#number-bin"
+				},
+				{
+					"include": "#number-long"
+				}
+			]
+		},
+		"number-float": {
+			"name": "constant.numeric.float",
+			"match": "(?x)\n  (?<! \\w)(?:\n    (?:\n      \\.[0-9](?: _?[0-9] )*\n      |\n      [0-9](?: _?[0-9] )* \\. [0-9](?: _?[0-9] )*\n      |\n      [0-9](?: _?[0-9] )* \\.\n    ) (?: [eE][+-]?[0-9](?: _?[0-9] )* )?\n    |\n    [0-9](?: _?[0-9] )* (?: [eE][+-]?[0-9](?: _?[0-9] )* )\n  )([jJ])?\\b\n",
+			"captures": {
+				"1": {
+					"name": "storage.type.imaginary.number"
+				}
+			}
+		},
+		"number-dec": {
+			"name": "constant.numeric.dec",
+			"match": "(?x)\n  (?<![\\w\\.])(?:\n      [1-9](?: _?[0-9] )*\n      |\n      0+\n      |\n      [0-9](?: _?[0-9] )* ([jJ])\n      |\n      0 ([0-9]+)(?![eE\\.])\n  )\\b\n",
+			"captures": {
+				"1": {
+					"name": "storage.type.imaginary.number"
+				},
+				"2": {
+					"name": "invalid.illegal.dec"
+				}
+			}
+		},
+		"number-hex": {
+			"name": "constant.numeric.hex",
+			"match": "(?x)\n  (?<![\\w\\.])\n    (0[xX]) (_?[0-9a-fA-F])+\n  \\b\n",
+			"captures": {
+				"1": {
+					"name": "storage.type.number"
+				}
+			}
+		},
+		"number-oct": {
+			"name": "constant.numeric.oct",
+			"match": "(?x)\n  (?<![\\w\\.])\n    (0[oO]) (_?[0-7])+\n  \\b\n",
+			"captures": {
+				"1": {
+					"name": "storage.type.number"
+				}
+			}
+		},
+		"number-bin": {
+			"name": "constant.numeric.bin",
+			"match": "(?x)\n  (?<![\\w\\.])\n    (0[bB]) (_?[01])+\n  \\b\n",
+			"captures": {
+				"1": {
+					"name": "storage.type.number"
+				}
+			}
+		},
+		"number-long": {
+			"name": "constant.numeric.bin",
+			"comment": "this is to support python2 syntax for long ints",
+			"match": "(?x)\n  (?<![\\w\\.])\n    ([1-9][0-9]* | 0) ([lL])\n  \\b\n",
+			"captures": {
+				"2": {
+					"name": "storage.type.number"
+				}
+			}
+		},
+		"strings": {
+			"name": "string.quoted.double.v",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.v",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"name": "comment.v",
+			"begin": "!",
+			"end": "!",
+			"patterns": [
+				{
+					"name": "comment",
+					"match": "/(?<=!).*(?=!)/g"
+				}
+			]
+		}
+	},
+	"scopeName": "source.v"
+}

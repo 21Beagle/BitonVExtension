@@ -1,0 +1,437 @@
+{
+	"Set (rc)": {
+		"prefix": "rc",
+		"body": [
+			"set (rc) = "
+		],
+		"description": "Set (rc)"
+	},
+	"Close Extract File": {
+		"prefix": "cef",
+		"body": [
+			"CloseExtractFile(\"${1:${TM_FILENAME_BASE}}\")"
+		],
+		"description": "(ExtractId)"
+	},
+	"Open Extract File": {
+		"prefix": "oef",
+		"body": [
+			"OpenExtractFile(\"${1:${TM_FILENAME_BASE}}\", \"$2\", \"${3|\\,,\\||}\", \"$4\")"
+		],
+		"description": "(ExtractId, File, Delimiter, BookEnd)"
+	},
+	"Save Cell": {
+		"prefix": "sc",
+		"body": [
+			"SaveCell(\"${1:${TM_FILENAME_BASE}}\", \"$2\", $3)"
+		],
+		"description": "(ExtractId, ColumnID, Content)"
+	},
+	"Column Heading": {
+		"prefix": "ch",
+		"body": [
+			"ColumnHeading(\"${1:${TM_FILENAME_BASE}}\", \"$2\", \"$3\", \"$4\", \"$5\")"
+		],
+		"description": "(ExtractId, ColumnID, HeaderText, Category, EditMask)"
+	},
+	"Next Row": {
+		"prefix": "nr",
+		"body": [
+			"NextRow(\"${1:${TM_FILENAME_BASE}}\")$2"
+		],
+		"description": "(ExtractId)"
+	},
+	"set DEBUG": {
+		"prefix": "dbg",
+		"body": [
+			"set DEBUG = \"$1\"$2"
+		],
+		"description": "creates the line to set what to write to the debug file."
+	},
+	"Prepass Template": {
+		"prefix": "prepass",
+		"body": [
+			"prepass $1",
+			"\tsort ${8|str,strd,num,numd|}; break edit \"\" ${6:thendo ${2}} ${7:firstdo ${4}}",
+			"\tpush $9\n",
+			"${3:\tprocess ${2}\n\t\t\n\tendproc}",
+			"\tprocess detail",
+			"\t\t",
+			"\tendproc",
+			"${5:\tprocess ${4}\n\t\t\n\tendproc}",
+			"endpass"
+		],
+		"description": "Creates a complete prepass template with three processes, a push statement and a sort statemetn"
+	},
+	"Debug output file": {
+		"prefix": "dbgo",
+		"body": [
+			"list DEBUG = \"${1:${TM_FILENAME_BASE}}.dbg\" output$2"
+		],
+		"description": "Creates the debug output line."
+	},
+	"Set RC Close Extract File": {
+		"prefix": "rccef",
+		"body": [
+			"set (rc) = CloseExtractFile(\"${1:${TM_FILENAME_BASE}}\")"
+		],
+		"description": "(ExtractID)"
+	},
+	"Set RC Open Extract File": {
+		"prefix": "rcoef",
+		"body": [
+			"set (rc) = OpenExtractFile(\"${1:${TM_FILENAME_BASE}}\", \"$2\", \"$3\", \"$4\")"
+		],
+		"description": "(ExtractID, File, Delimiter, BookEnd)"
+	},
+	"Set RC Save Cell": {
+		"prefix": "rcsc",
+		"body": [
+			"set (rc) = SaveCell(\"${1:${TM_FILENAME_BASE}}\", \"$2\", $3)"
+		],
+		"description": "(ExtractID, ColumnID, Content)"
+	},
+	"Set RC Column Heading": {
+		"prefix": "rcch",
+		"body": [
+			"set (rc) = ColumnHeading(\"${1:${TM_FILENAME_BASE}}\", \"$2\", \"$3\", \"$4\", \"$5\")"
+		],
+		"description": "(ExtractID, ColumnID, HeaderText, Category, EditMask)"
+	},
+	"Set RC Next Row": {
+		"prefix": "rcnr",
+		"body": [
+			"set (rc) = NextRow(\"${1:${TM_FILENAME_BASE}}\")"
+		],
+		"description": "(ExtractId)"
+	},
+	"process": {
+		"prefix": "process",
+		"body": [
+			"process $1",
+			"\t$2",
+			"endproc"
+		],
+		"description": "process statement"
+	},
+	"edit": {
+		"prefix": "edit",
+		"body": [
+			"edit(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, \"$2\")"
+		],
+		"description": "(variable,string2)"
+	},
+	"FormatDate": {
+		"prefix": "FormatDate",
+		"body": [
+			"FormatDate(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, \"$2\")"
+		],
+		"description": "FormatDate"
+	},
+	"dayson": {
+		"prefix": "dayson",
+		"body": [
+			"dayson(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, $2, \"$3\")"
+		],
+		"description": "(Date, Number, String)"
+	},
+	"concat": {
+		"prefix": "concat",
+		"body": [
+			"concat(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, $2)",
+			"$3"
+		],
+		"description": "(String1, String2)"
+	},
+	"yearson": {
+		"prefix": "yearson",
+		"body": [
+			"yearson(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, $2)"
+		],
+		"description": "(Date, Number)"
+	},
+	"monthson": {
+		"prefix": "monthson",
+		"body": [
+			"monthson(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, $2)"
+		],
+		"description": "(Date, Number)"
+	},
+	"modulo": {
+		"prefix": "modulo",
+		"body": [
+			"modulo($1, $2)"
+		],
+		"description": "(number1, number2)"
+	},
+	"leftstr": {
+		"prefix": "leftstr",
+		"body": [
+			"leftstr(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, $2)"
+		],
+		"description": "(string/variable, number)"
+	},
+	"midstr": {
+		"prefix": "midstr",
+		"body": [
+			"midstr(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, $2, $3)"
+		],
+		"description": "(string/variable, number, number)"
+	},
+	"rightstr": {
+		"prefix": "rightstr",
+		"body": [
+			"rightstr(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, $2)"
+		],
+		"description": "(string/variable,number, number)"
+	},
+	"substr": {
+		"prefix": "substr",
+		"body": [
+			"substr(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, $2, $3)"
+		],
+		"description": "(variable, string1, string2)"
+	},
+	"FieldLookUp": {
+		"prefix": "FieldLookUp",
+		"body": [
+			"FieldLookUp($1, \"$2\")"
+		],
+		"description": "(string1, string2)"
+	},
+	"round": {
+		"prefix": "round",
+		"body": [
+			"round($1, ${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(Number, Variable)"
+	},
+	"KeySearch": {
+		"prefix": "KeySearch",
+		"body": [
+			"KeySearch(\"$1\", \"$2\", \"$3\", $4)"
+		],
+		"description": "(String, String, String, Date)"
+	},
+	"Control bucket": {
+		"prefix": "cb",
+		"body": [
+			"control bucket \"${1|tran,trantrace,codes,prices,sectype,tac|}\""
+		],
+		"description": "Control bucket statement"
+	},
+	"Control bucket keys": {
+		"prefix": "cbk",
+		"body": [
+			"control bucket \"${1|tran,trantrace,sectype,prices,codes,tac|}\"",
+			"",
+			"keys \"$3\" ($4)$5"
+		],
+		"description": "Control bucket statement"
+	},
+	"stroffset": {
+		"prefix": "stroffset",
+		"body": [
+			"stroffset(\"$1\", \"$2\")$3"
+		],
+		"description": "(String1, String2)"
+	},
+	"Big template program with debug": {
+		"prefix": "templatebig",
+		"body":[
+				"control bucket \"${1|tran,trantrace,sectype,prices,codes,tac|}\"\n",
+				"keys \"\" ()\n",
+				"list DEBUG = \"${TM_FILENAME_BASE}.dbg\" output\n\n",
+				"${2:process beginning\n\tset DEBUG = \"Start beginning\"\n\t\n\tset DEBUG = \"End beginning\"\nendproc\n}",
+				"${3:process prerun\n\tset DEBUG = \"Start prerun\"\n\n\tset DEBUG = \"End prerun\"\nendproc\n}",
+				"sort \n",
+				"${4:process detail\n\tset DEBUG = \"Start detail\"\n\n\tset DEBUG = \"End detail\"\nendproc\n}" ,
+				"print\n",
+				"${5:process heading\n\tset DEBUG = \"Start heading\"\n\n\tset DEBUG = \"End heading\"\nendproc\n}",
+				"${6:process ending\n\tset DEBUG = \"Start ending\"\n\n\tset DEBUG = \"End ending\"\nendproc}"
+		],
+		"description": "Big template with debugs in every process"
+	},
+	"Reopen a file": {
+		"prefix": "reopen",
+		"body": [
+			"list DUMMY$1 = \"$2\" output",
+			"list $1 = \"$2\" input$3"
+		]
+	},
+	"Template program": {
+		"prefix": "template",
+		"body":[
+				"control bucket \"${1|tran,trantrace,sectype,prices,codes,tac|}\"\n",
+				"keys \"$2\" ($3)\n",
+				"sort ${4|str,strd,num,numd|}\n",
+				"print $5"
+		],
+		"description": "Big template with debugs in every process"
+	},
+	"set": {
+		"prefix": "set",
+		"body":[
+				"set ($1) = $2"
+		],
+		"description": "Small set statement"
+	},
+	"runonce": {
+		"prefix": "runonce",
+		"body":[
+			"control bucket \"sectype\"\n",
+			"keys \"cash\" (security type code)\n",
+			"sort str \"1\"\n\n",
+			"process detail",
+			"\t$1",   
+			"endproc\n\n",
+			"print ($2)"
+		],
+		"description": "template for running program once"
+	},
+	"To excel": {
+		"prefix": "fexcel",
+		"body":[
+			"concat(\"\\\"=\\\"\\\"\", ${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})",
+			"set ${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}} = concat(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, \"\\\"\\\"\\\"\")"
+		],
+		"description": "Will stop excel from changing the data"
+	},
+	"environment": {
+		"prefix": "environment",
+		"body":[
+			"enviroment(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(string)"
+	},
+	"length": {
+		"prefix": "length",
+		"body":[
+			"length(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(string)"
+	},
+	"floor": {
+		"prefix": "floor",
+		"body":[
+			"floor(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(number)"
+	},
+	"ceiling": {
+		"prefix": "ceiling",
+		"body":[
+			"ceiling(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(number)"
+	},
+	"weekday": {
+		"prefix": "weekday",
+		"body":[
+			"weekday(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(date)"
+	},
+	"stripzero": {
+		"prefix": "stripzero",
+		"body":[
+			"stripzero(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(all/variable)"
+	},
+	"StringToDate": {
+		"prefix": "StringToDate",
+		"body":[
+			"StringToDate(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(string)"
+	},
+	"strip": {
+		"prefix": "strip",
+		"body":[
+			"strip(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(any type/variable)"
+	},
+	"ucase": {
+		"prefix": "ucase",
+		"body":[
+			"ucase(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(String)"
+	},
+	"lcase": {
+		"prefix": "lcase",
+		"body":[
+			"lcase(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(String)"
+	},
+	"monthof": {
+		"prefix": "monthof",
+		"body":[
+			"monthof(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(Date)"
+	},
+	"yearof": {
+		"prefix": "yearof",
+		"body":[
+			"yearof(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(Date)"
+	},
+	"log": {
+		"prefix": "log",
+		"body":[
+			"log(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(Number)"
+	},
+	"exp": {
+		"prefix": "exp",
+		"body":[
+			"exp(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(Number)"
+	},
+	"sqrt": {
+		"prefix": "sqrt",
+		"body":[
+			"sqrt(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(Number)"
+	},
+	"longdate": {
+		"prefix": "longdate",
+		"body":[
+			"longdate(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+		],
+		"description": "(Date)"
+	},
+	"trace keys": {
+		"prefix": "tracekeys",
+		"body": [
+			"variable ${1:whatport}1=substr(${1:whatport},\"|\",\"*PIPE\")",
+			"variable ${1:whatport}2=substr(${1:whatport}1,\"PIPE\",\"|\")",
+			"variable ${1:whatport}3=concat(${1:whatport}2,\"*\")",
+			"",
+			"keys (${1:whatport}3) (witch key)",
+			"",
+			"",
+			"${2:process prerun\n\tset (PortfolioCode)=(leftstr(witch key[1],4))\n\tset (Key)=(witch key[1])\n\tset (Order)=(witch key[2])\nendproc}"
+		],
+		"description": "Gives the manipulation required for a trace keys search."
+	},
+	"Questions": {
+		"prefix": "questions",
+		"body": [
+			"${1:control spool=<1SReport straight to printer ? default \"no\"}",
+			"${2:variable start=<5DTransactions from? default today}",
+			"${3:variable end=<2DTransactions to? default today}",
+			"${4:variable portgroup=<82SParticular Portfolio groups ? default \"Funds\"}",
+			"${5:variable portlist=(portgroup->code list)\nvariable whatport=<3SParticular Portfolios ? default portlist}"
+		]
+	}
+}
+

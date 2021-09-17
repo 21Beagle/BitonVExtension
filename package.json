@@ -1,0 +1,61 @@
+{
+	"name": "v",
+	"publisher": "jackbeagle",
+	"displayName": "Biton V Language Support",
+	"description": "V Language syntax support for Biton System Consultants",
+	"version": "1.4.1",
+	"engines": {
+		"vscode": "^1.58.0"
+	},
+	"icon": "resources/biton.png",
+	"keywords": [
+		"V",
+		"biton",
+		"language support",
+		"language syntax",
+		"biton system consultants"
+	],
+	"categories": [
+		"Language Packs",
+		"Programming Languages",
+		"Snippets"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "v",
+				"aliases": [
+					"V",
+					"v",
+					"Biton V",
+					"Biton v"
+				],
+				"extensions": [
+					".rep",
+					".inc",
+					".inp"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "v",
+				"path": "./snippets.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "v",
+				"scopeName": "source.v",
+				"path": "./syntaxes/v.tmLanguage.json"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "8d0d683b-bee8-4c4e-9288-524f63e5237e",
+		"publisherId": "62a4146c-0e22-4bab-9705-ae75675c5adf",
+		"publisherDisplayName": "jackbeagle",
+		"installedTimestamp": 1630667233144
+	}
+}
