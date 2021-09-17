@@ -427,8 +427,8 @@
 		"prefix": "questions",
 		"body": [
 			"${1:control spool=<1SReport straight to printer ? default \"no\"}",
-			"${2:variable start=<5DTransactions from? default today}",
-			"${3:variable end=<2DTransactions to? default today}",
+			"${2:variable start=<5DTransactions from ? default today}",
+			"${3:variable end=<2DTransactions to ? default today}",
 			"${4:variable portgroup=<82SParticular Portfolio groups ? default \"Funds\"}",
 			"${5:variable portlist=(portgroup->code list)\nvariable whatport=<3SParticular Portfolios ? default portlist}"
 		]
