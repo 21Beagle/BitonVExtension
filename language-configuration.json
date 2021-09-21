@@ -17,7 +17,6 @@
         {"open": "'", "close": "'"},
         {"open": "!", "close": "!"}
     ],
-    
     // symbols that can be used to surround a selection
     "surroundingPairs": [
         {"open": "{", "close": "}"},
@@ -28,7 +27,19 @@
         {"open": "!", "close": "!"}
     ],
     "indentationRules": {
-        "increaseIndentPattern": "^\\s*?(?:dowhile|if|process|prepass|else).*?$",
+        "increaseIndentPattern": "^\\s*?(?:dowhile|if|process|prepass).*?$",
         "decreaseIndentPattern": "^\\s*?(?:enddo|endif|endproc|endpass|else).*?$"
+    },
+    "onEnterRules": [
+        {
+            "beforeText": "^\\s*(?:else).*?$",
+            "action": { "indent": "indent" }
+        }
+    ],
+    "folding": {
+        "markers": {
+            "start": "^\\s*?(?:dowhile|if|process|prepass|else).*?$",
+            "end": "^\\s*?(?:enddo|endif|endproc|endpass|else).*?$"
+        }
     }
 }
