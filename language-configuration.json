@@ -30,16 +30,10 @@
         "increaseIndentPattern": "^\\s*?(?:dowhile|if|process|prepass).*?$",
         "decreaseIndentPattern": "^\\s*?(?:enddo|endif|endproc|endpass|else).*?$"
     },
-    "onEnterRules": [
-        {
-            "beforeText": "^\\s*(?:else).*?$",
-            "action": { "indent": "indent" }
-        }
-    ],
     "folding": {
         "markers": {
-            "start": "^\\s*?(?:dowhile|if|process|prepass|else).*?$",
-            "end": "^\\s*?(?:enddo|endif|endproc|endpass|else).*?$"
+            "start": "^\\s*?(?:process|prepass).*?$",
+            "end": "^\\s*?(?:endproc|endpass).*?$"
         }
     }
 }

@@ -3,7 +3,7 @@
 	"publisher": "jackbeagle",
 	"displayName": "Biton V Language Support",
 	"description": "V Language syntax support for Biton System Consultants",
-	"version": "1.4.3",
+	"version": "1.4.5",
 	"engines": {
 		"vscode": "^1.58.0"
 	},

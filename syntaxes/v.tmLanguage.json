@@ -22,16 +22,12 @@
 		"keywords": {
 			"patterns": [
 			{
-				"name": "invalid",
-				"match": "(?<=^.{80}).*?$"
-			},
-			{
 				"name": "variable.other.constant",
-				"match": "(?<=(\\(|,|\\*|/|\\+|-|->))\\s*?\\w*?\\s(\\w.*?\\s)*?\\w*?\\s*?(?=(\\)|,|\\*|/|\\+|-|->|\\[))"
+				"match": "((?<=(\\(|,|\\*|/|\\+|-))|(?<=->))\\s*?\\w*?\\s(\\w.*?\\s)*?\\w*?\\s*?((?=(\\)|,|\\*|/|\\+|-|\\[)|(?=->)))"
 			},
 			{
 				"name": "keyword.control",
-				"match": "\\s*?\\b(then|if|else|endif|dowhile|enddo|printif|elseprint|or|and|when)\\s"
+				"match": "\\s*?\\b(then|if|else|endif|dowhile|enddo|printif|elseprint|elseif|or|and|when)\\s"
 			},
 			{
 				"name": "string.regexp",
@@ -51,7 +47,7 @@
 			},
 			{
 				"name": "support.function",
-				"match": "\\b(SingleAnswerOnly|spawn|reopen|SetTranNo|GetMktExRate|NextTranNoSilent|poolcopy|delete|create|CloseExtractFile|yield|leftstr|midstr|rightstr|substr|environment|length|FormatDate|FieldLookup|modulo|floor|ceiling|weekday|stripzero|StringToDate|round|edit|strip|KeySearch|stroffset|ucase|lcase|fieldsearch|dayson|monthson|yearson|dayof|monthof|yearof|log|exp|sqrt|longdate|setstringfield|dothealloc|clearalloc|create|subfields|concat|function|today|time|getlogin|OpenExtractFile|ColumnHeading|SaveCell|NextRow)\\("
+				"match": "\\b(SingleAnswerOnly|spawn|reopen|SetTranNo|GetMktExRate|NextTranNoSilent|poolcopy|delete|create|CloseExtractFile|yield|leftstr|midstr|rightstr|substr|environment|length|FormatDate|FieldLookup|modulo|floor|ceiling|weekday|stripzero|StringToDate|round|edit|strip|KeySearch|stroffset|ucase|lcase|fieldsearch|dayson|monthson|yearson|dayof|monthof|yearof|log|exp|sqrt|longdate|setstringfield|dothealloc|clearalloc|create|subfields|concat|function|today|time|getlogin|OpenExtractFile|ColumnHeading|SaveCell|NextRow)(?=\\()"
 			},
 			{
 				"name": "support.function",

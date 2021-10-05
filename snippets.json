@@ -9,7 +9,7 @@
 	"Close Extract File": {
 		"prefix": "cef",
 		"body": [
-			"CloseExtractFile(\"${1:${TM_FILENAME_BASE}}\")"
+			"CloseExtractFile(\"${1|extract,${TM_FILENAME_BASE}|}\")"
 		],
 		"description": "(ExtractId)"
 	},
