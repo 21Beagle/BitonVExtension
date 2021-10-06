@@ -9,7 +9,7 @@
 	"Close Extract File": {
 		"prefix": "cef",
 		"body": [
-			"CloseExtractFile(\"${1|extract,${TM_FILENAME_BASE}|}\")"
+			"CloseExtractFile(\"${1:extract}\")"
 		],
 		"description": "(ExtractId)"
 	},
@@ -23,28 +23,28 @@
 	"Save Cell": {
 		"prefix": "sc",
 		"body": [
-			"SaveCell(\"${1|extract,${TM_FILENAME_BASE}|}\", \"${2:ColumnID}\", ${3:Content})"
+			"SaveCell(\"${1:extract}}\", \"${2:ColumnID}\", ${3:Content})"
 		],
 		"description": "(ExtractId, ColumnID, Content)"
 	},
 	"Column Heading": {
 		"prefix": "ch",
 		"body": [
-			"ColumnHeading(\"${1|extract,${TM_FILENAME_BASE}|}\", \"${2:ColumnID}\", \"${3:HeaderText}\", \"${4:Category}\", \"${5:EditMask}\")"
+			"ColumnHeading(\"${1:extract}\", \"${2:ColumnID}\", \"${3:HeaderText}\", \"${4:Category}\", \"${5:EditMask}\")"
 		],
 		"description": "(ExtractId, ColumnID, HeaderText, Category, EditMask)"
 	},
 	"Next Row": {
 		"prefix": "nr",
 		"body": [
-			"NextRow(\"${1|extract,${TM_FILENAME_BASE}|}\")$2"
+			"NextRow(\"${1:extract}\")$2"
 		],
 		"description": "(ExtractId)"
 	},
 	"set DEBUG": {
 		"prefix": "dbg",
 		"body": [
-			"set DEBUG = \"$1\"$2"
+			"set DEBUG = "
 		],
 		"description": "creates the line to set what to write to the debug file."
 	},
@@ -73,7 +73,7 @@
 	"Set RC Close Extract File": {
 		"prefix": "rccef",
 		"body": [
-			"set (rc) = CloseExtractFile(\"${1|extract,${TM_FILENAME_BASE}|}\")"
+			"set (rc) = CloseExtractFile(\"${1:extract}\")"
 		],
 		"description": "(ExtractID)"
 	},
@@ -87,21 +87,21 @@
 	"Set RC Save Cell": {
 		"prefix": "rcsc",
 		"body": [
-			"set (rc) = SaveCell(\"${1|extract,${TM_FILENAME_BASE}|}\", \"${2:ColumnID}\", ${3:Content})"
+			"set (rc) = SaveCell(\"${1:extract}\", \"${2:ColumnID}\", ${3:Content})"
 		],
 		"description": "(ExtractID, ColumnID, Content)"
 	},
 	"Set RC Column Heading": {
 		"prefix": "rcch",
 		"body": [
-			"set (rc) = ColumnHeading(\"${1|extract,${TM_FILENAME_BASE}|}\", \"${2:ColumnID}\", \"${3:HeaderText}\", \"${4:Category}\", \"${5:EditMask}\")"
+			"set (rc) = ColumnHeading(\"${1:extract}\", \"${2:ColumnID}\", \"${3:HeaderText}\", \"${4:Category}\", \"${5:EditMask}\")"
 		],
 		"description": "(ExtractID, ColumnID, HeaderText, Category, EditMask)"
 	},
 	"Set RC Next Row": {
 		"prefix": "rcnr",
 		"body": [
-			"set (rc) = NextRow(\"${1|extract,${TM_FILENAME_BASE}|}\")"
+			"set (rc) = NextRow(\"${1:extract}\")"
 		],
 		"description": "(ExtractId)"
 	},
