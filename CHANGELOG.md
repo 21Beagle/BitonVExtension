@@ -57,4 +57,12 @@ All notable changes to the "v" extension will be documented in this file.
 
 - Every function added from the wiki as of update date. 
 
-- Snippets are now much more clever than in [1.3.0]. 
+- Snippets are much better than they were in [1.3.0]. 
+
+## [1.4.8]
+
+- Lots of small improvements
+
+- All the snippets for functions have the description from the wiki attached to them so you no longer need to go to the wiki to remind yourself.
+
+- dowhile snippet added as per Harry's request.

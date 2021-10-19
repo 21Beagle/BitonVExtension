@@ -27,13 +27,23 @@
         {"open": "!", "close": "!"}
     ],
     "indentationRules": {
-        "increaseIndentPattern": "^\\s*?(?:dowhile|if|process|prepass).*?$",
-        "decreaseIndentPattern": "^\\s*?(?:enddo|endif|endproc|endpass|else).*?$"
+        "increaseIndentPattern": "^\\s*?(?:process|prepass|else).*?$",
+        "decreaseIndentPattern": "^\\s*?(?:endproc|endpass|else).*?$"
     },
     "folding": {
         "markers": {
             "start": "^\\s*?(?:process|prepass).*?$",
             "end": "^\\s*?(?:endproc|endpass).*?$"
         }
-    }
+    },
+    "onEnterRules": [
+        {
+            "beforeText": "^\\s*(?:if|dowhile|else).*?$",
+            "action": { "indent": "indent" }
+        },
+        {
+            "beforeText": "^\\s*(?:endif|enddo).*?$",
+            "action": { "indent": "outdent" }
+        }
+    ]
 }

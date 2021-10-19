@@ -18,28 +18,28 @@
 		"body": [
 			"OpenExtractFile(\"${1:${TM_FILENAME_BASE}}\", \"${2:File}\", \"${3|\\,,\\||}\", \"${4:BookEnd}\")"
 		],
-		"description": "(ExtractId, File, Delimiter, BookEnd)"
+		"description": "Opens a new Extract File, File, labelled as ExtractID, with each cell to be delimited by Delimiter (In a real CSV file, this must be ,). The BookEnd argument (for lack of a better name) will surround each cell's contents with a given string (usually a single character, which in the case of a real CSV file must be \")."
 	},
 	"Save Cell": {
 		"prefix": "sc",
 		"body": [
 			"SaveCell(\"${1:extract}}\", \"${2:ColumnID}\", ${3:Content})"
 		],
-		"description": "(ExtractId, ColumnID, Content)"
+		"description": "Saves Content to the specified Extract File under the column ColumnID. Content can be a String, Local Variable, or Database Field."
 	},
 	"Column Heading": {
 		"prefix": "ch",
 		"body": [
 			"ColumnHeading(\"${1:extract}\", \"${2:ColumnID}\", \"${3:HeaderText}\", \"${4:Category}\", \"${5:EditMask}\")"
 		],
-		"description": "(ExtractId, ColumnID, HeaderText, Category, EditMask)"
+		"description": "Sets out how the outputted Extract File will be formatted. Each column has header text which will appear on the line preceding the file's main table of data (but after the Header from SaveHeader?). The ColumnID is a string that identifies this column within the V program (only has to be unique among columns in the current extract file & V program). Category & EditMask are used for the product Report Writer, probably never used again. Category prints a row between the table's header line and the table itself with the category for each column. EditMask is literally an edit mask (e.g. \"x(20)\") and will cause each cell in this column to behave as such."
 	},
 	"Next Row": {
 		"prefix": "nr",
 		"body": [
 			"NextRow(\"${1:extract}\")$2"
 		],
-		"description": "(ExtractId)"
+		"description": "Used in combination with SaveCell and SaveRecord(), this ensures that the next SaveCell will affect the next line in the Extract File."
 	},
 	"set DEBUG": {
 		"prefix": "dbg",
@@ -61,7 +61,7 @@
 			"${5:\tprocess ${4}\n\t\t\n\tendproc !${4}!}",
 			"endpass !$1!"
 		],
-		"description": "Creates a complete prepass template with three processes, a push statement and a sort statemetn"
+		"description": "Creates a complete prepass template with three process, a push statement and a sort statement"
 	},
 	"Debug output file": {
 		"prefix": "dbgo",
@@ -75,51 +75,61 @@
 		"body": [
 			"set (rc) = CloseExtractFile(\"${1:extract}\")"
 		],
-		"description": "(ExtractID)"
+		"description": "Closes and writes to the file labelled as ExtractID."
 	},
 	"Set RC Open Extract File": {
 		"prefix": "rcoef",
 		"body": [
 			"set (rc) = OpenExtractFile(\"${1:${TM_FILENAME_BASE}}\", \"${2:File}\", \"${3|\\,,\\||}\", \"${4:BookEnd}\")"
 		],
-		"description": "(ExtractID, File, Delimiter, BookEnd)"
+		"description": "Opens a new Extract File, File, labelled as ExtractID, with each cell to be delimited by Delimiter (In a real CSV file, this must be ,). The BookEnd argument (for lack of a better name) will surround each cell's contents with a given string (usually a single character, which in the case of a real CSV file must be \")."
 	},
 	"Set RC Save Cell": {
 		"prefix": "rcsc",
 		"body": [
 			"set (rc) = SaveCell(\"${1:extract}\", \"${2:ColumnID}\", ${3:Content})"
 		],
-		"description": "(ExtractID, ColumnID, Content)"
+		"description": "Saves Content to the specified Extract File under the column ColumnID. Content can be a String, Local Variable, or Database Field."
 	},
 	"Set RC Column Heading": {
 		"prefix": "rcch",
 		"body": [
 			"set (rc) = ColumnHeading(\"${1:extract}\", \"${2:ColumnID}\", \"${3:HeaderText}\", \"${4:Category}\", \"${5:EditMask}\")"
 		],
-		"description": "(ExtractID, ColumnID, HeaderText, Category, EditMask)"
+		"description": "Sets out how the outputted Extract File will be formatted. Each column has header text which will appear on the line preceding the file's main table of data (but after the Header from SaveHeader?). The ColumnID is a string that identifies this column within the V program (only has to be unique among columns in the current extract file & V program). Category & EditMask are used for the product Report Writer, probably never used again. Category prints a row between the table's header line and the table itself with the category for each column. EditMask is literally an edit mask (e.g. \"x(20)\") and will cause each cell in this column to behave as such."
 	},
 	"Set RC Next Row": {
 		"prefix": "rcnr",
 		"body": [
 			"set (rc) = NextRow(\"${1:extract}\")"
 		],
-		"description": "(ExtractId)"
+		"description": "Used in combination with SaveCell and SaveRecord(), this ensures that the next SaveCell will affect the next line in the Extract File."
 	},
 	"process": {
 		"prefix": "process",
 		"body": [
 			"process $1",
 			"\t",
-			"endproc !$1!"
+			"endproc $1"
 		],
 		"description": "process statement"
+	},
+	"dowhile": {
+		"prefix": "dowhile",
+		"body": [
+			"${1:set i = 0}",
+			"dowhile ${2:i ${3|lt,le,gt,ge|} ${4:subfields(${5:variable})}} ",
+			"\t$6",
+			"\t${1:set i = i + 1}",
+			"enddo"
+		]
 	},
 	"edit": {
 		"prefix": "edit",
 		"body": [
 			"edit(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, \"${2:EditMask}\")"
 		],
-		"description": "(variable, EditMask)"
+		"description": "As well as being an adverb, edit is also a function that allows one to specify how a particular datatype will be displayed. This is usually used for numbers in long print statements as without an edit mask only text and dates will be displayed. string2 can consist of a long string of x's or z's, x's are used to tell V how to output text, and z's are for numbers. The typical form for string2 when \"editing-masking\" text is \"x(20)\" where 20 can be any number up to the pagewidth. For numbers, the typical form is \"zzz,zzz,zz9.99\" the commas and full stops are where they will appear in the number and the 9's denote where a number should always be shown even if it's a 0. however, this can cause the final output to look bad as blank space is introduced by the edit mask. Using strip() will help with this."
 	},
 	"FormatDate": {
 		"prefix": "FormatDate",
@@ -133,7 +143,7 @@
 		"body": [
 			"dayson(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, ${2:Number}, \"${3:String}\")"
 		],
-		"description": "(Date, Number, String)"
+		"description": "Used to increase or reduce a date by a given number of days. First argument is the starting date, second is a positive or negative number, third is \"C\" or \"B\" for calendar days or business days."
 	},
 	"concat": {
 		"prefix": "concat",
@@ -148,70 +158,75 @@
 		"body": [
 			"yearson(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, ${2:Number})"
 		],
-		"description": "(Date, Number)"
+		"description": "Used to increase or reduce a date by a given number of years. First argument is the starting date, second is a positive or negative number."
 	},
 	"monthson": {
 		"prefix": "monthson",
 		"body": [
 			"monthson(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, ${2:Number})"
 		],
-		"description": "(Date, Number)"
+		"description": "Used to increase or reduce a date by a given number of months. First argument is the starting date, second is a positive or negative number. A 1 month increase from Jan 31 will be Feb 28."
 	},
 	"modulo": {
 		"prefix": "modulo",
 		"body": [
 			"modulo(${1:number1}, ${2:number2})"
 		],
-		"description": "(number1, number2)"
+		"description": "Returns the remainder of number1 divided by number 2. (Double floating point Precision) (Returned result has the sign of the dividend/numerator)"
 	},
 	"leftstr": {
 		"prefix": "leftstr",
 		"body": [
 			"leftstr(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, ${2:number})"
 		],
-		"description": "(string/variable, number)"
+		"description": "returns the first X characters of a string."
 	},
 	"midstr": {
 		"prefix": "midstr",
 		"body": [
 			"midstr(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, ${2:number}, ${3:number})"
 		],
-		"description": "(string/variable, number, number)"
+		"description": "returns x characters from specified starting point in given string. First number is starting point, second number is number of characters. Works as a leftstr from starting point"
 	},
 	"rightstr": {
 		"prefix": "rightstr",
 		"body": [
 			"rightstr(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, ${2:number})"
 		],
-		"description": "(string/variable,number, number)"
+		"description": "returns the last X characters of a string."
 	},
 	"substr": {
 		"prefix": "substr",
 		"body": [
 			"substr(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}}, ${2:string}, ${3:string})"
 		],
-		"description": "(variable, string1, string2)"
+		"description": "Substitute every occurance of string1 with string2 in the given variable. Can be used as a basic split function, replacing spaces with a bar."
 	},
 	"FieldLookUp": {
 		"prefix": "FieldLookUp",
 		"body": [
 			"FieldLookUp(${1:string}, \"$2\")"
 		],
-		"description": "(BarFile, String)"
+		"description": "Searches all but the first column of a bar-delimited file (string1) for the contents of the second argument and returns the value in the first column of the file."
 	},
 	"round": {
 		"prefix": "round",
 		"body": [
 			"round(${1:Number}, ${2:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(Number, Variable)"
+		"description": "Rounds Number2 to the nearest Number1 decimal places."
 	},
 	"KeySearch": {
 		"prefix": "KeySearch",
 		"body": [
 			"KeySearch(\"${1:String}\", \"${2:String}\", \"${3:String}\", ${4:Date})"
 		],
-		"description": "(String, String, String, Date)"
+		"description": "Given a bucket, a search string, a bar list of fields to search in, and a date left blank. Will search for the first record where the search string matches one of the fields in the bar of fields. Will only return the first match."
+	},
+	"fieldsearch": {
+		"prefix": "fieldsearch",
+		"body": "fieldsearch(${1:string}, ${2:string})",
+		"description": "First item is a bar file that will be searched, second is a variable that is being searched for. It will search in column two of the file, column 3,4,5,etc. if they exist. The function will return the first column, and will only return the first match."
 	},
 	"Control bucket": {
 		"prefix": "cb",
@@ -234,7 +249,7 @@
 		"body": [
 			"stroffset(\"$1\", \"$2\")$3"
 		],
-		"description": "(String1, String2)"
+		"description": "Finds the starting location of string2 within string1 and returns it. Returns \"0.000000\" if there is no match."
 	},
 	"Big template program with debug": {
 		"prefix": "templatebig",
@@ -252,8 +267,13 @@
 		],
 		"description": "Big template with debugs in every process"
 	},
-	"Reopen a file": {
+	"reopen": {
 		"prefix": "reopen",
+		"body": "ReOpen(${1:list}, ${2:filename})",
+		"description": "Takes a filename and the list variable and reopens the file, used when a file is being deleted and recreated."
+	},
+	"list DUMMY": {
+		"prefix": "list DUMMY",
 		"body": [
 			"list DUMMY$1 = \"$2\" output",
 			"list $1 = \"$2\" input$3"
@@ -300,114 +320,119 @@
 	"environment": {
 		"prefix": "environment",
 		"body":[
-			"enviroment(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
+			"environment(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(string)"
+		"description": "Returns the value of an environment variable"
 	},
 	"length": {
 		"prefix": "length",
 		"body":[
 			"length(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(string)"
+		"description": "returns the number of characters in the string"
 	},
 	"floor": {
 		"prefix": "floor",
 		"body":[
 			"floor(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(number)"
+		"description": "Always rounds number down. (Double floating point Precision)"
 	},
 	"ceiling": {
 		"prefix": "ceiling",
 		"body":[
 			"ceiling(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(number)"
+		"description": "Always rounds number down. (Double floating point Precision)"
 	},
 	"weekday": {
 		"prefix": "weekday",
 		"body":[
 			"weekday(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(date)"
+		"description": "Returns a number according to what day of the week date is. (I.E. if date is Monday, weekday() will return 1.) The range is 1-7 (Mon-Sun)."
 	},
 	"stripzero": {
 		"prefix": "stripzero",
 		"body":[
 			"stripzero(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(all/variable)"
+		"description": "Same as strip() but removes trailing (and leading?) zeros too."
 	},
 	"StringToDate": {
 		"prefix": "StringToDate",
 		"body":[
 			"StringToDate(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(string)"
+		"description": "Converts a String into the internal biton date format (the number of days since 31 Dec 1979, the 0 day)"
 	},
 	"strip": {
 		"prefix": "strip",
 		"body":[
 			"strip(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(any type/variable)"
+		"description": "I believe strip is available for use with any data type in V (all 3 of them(!)). It's purpose is to remove any extraneous whitespace from the beginning and end of your data. Useful for removing the whitespace introduced by an edit mask"
 	},
 	"ucase": {
 		"prefix": "ucase",
 		"body":[
 			"ucase(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(String)"
+		"description": "Converts all characters in a string to uppercase."
 	},
 	"lcase": {
 		"prefix": "lcase",
 		"body":[
 			"lcase(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(String)"
+		"description": "Converts all characters in a string to lowercase."
 	},
 	"monthof": {
 		"prefix": "monthof",
 		"body":[
 			"monthof(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(Date)"
+		"description": "Gets what month the biton date is"
 	},
 	"yearof": {
 		"prefix": "yearof",
 		"body":[
 			"yearof(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(Date)"
+		"description": "Gets what year the biton date is"
+	},
+	"dayof": {
+		"prefix": "dayof",
+		"body": "dayof(${1:date})",
+		"description": "Gets what day of the month the biton date is"
 	},
 	"log": {
 		"prefix": "log",
 		"body":[
 			"log(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(Number)"
+		"description": "Returns the natural log, ln(number) of the number"
 	},
 	"exp": {
 		"prefix": "exp",
 		"body":[
 			"exp(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(Number)"
+		"description": "Returns e or 2.71828.... to the power of number"
 	},
 	"sqrt": {
 		"prefix": "sqrt",
 		"body":[
 			"sqrt(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(Number)"
+		"description": "Surprisingly, returns the square root of Number"
 	},
 	"longdate": {
 		"prefix": "longdate",
 		"body":[
 			"longdate(${1:${TM_CURRENT_LINE/(^.*?\\b )|\\s*?\\=\\s*?.*?$//g}})"
 		],
-		"description": "(Date)"
+		"description": "Returns the date in format DDth Month Year, e.g 23rd July 2021"
 	},
 	"trace keys": {
 		"prefix": "tracekeys",
