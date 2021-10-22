@@ -2,3 +2,5 @@
 *.rep
 *.inc
 *.inp
+**/.git
+**/.vscode
