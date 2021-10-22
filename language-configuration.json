@@ -24,26 +24,28 @@
         {"open": "(", "close": ")"},
         {"open": "\"", "close": "\""},
         {"open": "'", "close": "'"},
-        {"open": "!", "close": "!"}
+        {"open": "!", "close": "!"},
+        {"open": "process", "close": "endproc"},
+        {"open": "prepass", "close": "endpass"},
+        {"open": "dowhile", "close": "enddo"},
+        {"open": "if", "close": "endif"},
+
+
     ],
     "indentationRules": {
-        "increaseIndentPattern": "^\\s*?(?:process|prepass|else).*?$",
-        "decreaseIndentPattern": "^\\s*?(?:endproc|endpass|else).*?$"
+        "increaseIndentPattern": "^\\s*?(?:process|prepass|if|dowhile).*?$",
+        "decreaseIndentPattern": "^\\s*?(?:endproc|endpass|endif|enddo).*?$"
     },
     "folding": {
         "markers": {
-            "start": "^\\s*?(?:process|prepass).*?$",
-            "end": "^\\s*?(?:endproc|endpass).*?$"
-        }
+            "start": "^\\s*?(?:prepass).*?$",
+            "end": "^\\s*?(?:endpass).*?$"
+        },
     },
     "onEnterRules": [
         {
-            "beforeText": "^\\s*(?:if|dowhile|else).*?$",
+            "beforeText": "^\\s*(?:else).*?$",
             "action": { "indent": "indent" }
-        },
-        {
-            "beforeText": "^\\s*(?:endif|enddo).*?$",
-            "action": { "indent": "outdent" }
         }
     ]
 }
