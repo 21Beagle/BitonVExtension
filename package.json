@@ -1,7 +1,7 @@
 {
 	"name": "v",
 	"publisher": "jackbeagle",
-	"displayName": "Biton V Language Support",
+	"displayName": "V Language Support",
 	"description": "V Language syntax support for Biton System Consultants",
 	"version": "1.4.12",
 	"engines": {
