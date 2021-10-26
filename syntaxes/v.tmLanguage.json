@@ -23,7 +23,7 @@
 			"patterns": [
 			{
 				"name": "variable.other.constant",
-				"match": "((?<=(\\(|,|\\*|/|\\+|-))|(?<=->))\\s*?\\w\\w*?\\s\\s*?(\\w\\w*.?\\s*?)*?(\\w\\w*.?\\s*?)((?=(\\)|,|\\*|/|\\+|-|\\[)|(?=->)))"
+				"match": "((?<=(\\(|,|\\*|/|\\+|-))|(?<=->))\\s*?\\b\\w*?\\s\\s*?(\\b\\w*.?\\s*?)*?(\\w\\w*.?\\s*?)((?=(\\)|,|\\*|/|\\+|-|\\[)|(?=->)))"
 			},
 			{
 				"name": "keyword.control",
@@ -47,7 +47,7 @@
 			},
 			{
 				"name": "support.function",
-				"match": "\\b(SingleAnswerOnly|GetFwdMktExRate|price|spawn|reopen|SetTranNo|GetMktExRate|NextTranNoSilent|poolcopy|delete|create|CloseExtractFile|yield|leftstr|midstr|rightstr|substr|environment|length|FormatDate|FieldLookup|modulo|floor|ceiling|weekday|stripzero|StringToDate|round|edit|strip|KeySearch|stroffset|ucase|lcase|fieldsearch|dayson|monthson|yearson|dayof|monthof|yearof|log|exp|sqrt|longdate|setstringfield|dothealloc|clearalloc|create|subfields|concat|function|today|time|getlogin|OpenExtractFile|ColumnHeading|SaveCell|NextRow)(?=\\()"
+				"match": "\\b(relval|SingleAnswerOnly|GetFwdMktExRate|price|spawn|reopen|SetTranNo|GetMktExRate|NextTranNoSilent|poolcopy|delete|create|CloseExtractFile|yield|leftstr|midstr|rightstr|substr|environment|length|FormatDate|FieldLookup|modulo|floor|ceiling|weekday|stripzero|StringToDate|round|edit|strip|KeySearch|stroffset|ucase|lcase|fieldsearch|dayson|monthson|yearson|dayof|monthof|yearof|log|exp|sqrt|longdate|setstringfield|dothealloc|clearalloc|create|subfields|concat|function|today|time|getlogin|OpenExtractFile|ColumnHeading|SaveCell|NextRow)(?=\\()"
 			},
 			{
 				"name": "support.function",
