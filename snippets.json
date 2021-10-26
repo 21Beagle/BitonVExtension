@@ -46,7 +46,7 @@
 		"description": "Used in combination with SaveCell and SaveRecord(), this ensures that the next SaveCell will affect the next line in the Extract File."
 	},
 	"set DEBUG": {
-		"prefix": "DEBUG",
+		"prefix": "set DEBUG",
 		"body": [
 			"set DEBUG = $0"
 		],
@@ -292,7 +292,7 @@
 		],
 		"description": "Big template with debugs in every process"
 	},
-	"reopen": {
+	"ReOpen": {
 		"prefix": "reopen",
 		"body": [
 			"ReOpen(${1:list}, ${2:filename})",
@@ -493,8 +493,8 @@
 			"$0"
 		]
 	},
-	"DEBUG concat": {
-		"prefix": "debug concat",
+	"debug concat": {
+		"prefix": "set debug = concat",
 		"body": [
 			"set debug = concat(debug, \", \")",
 			"set debug = concat(debug, $1)",
