@@ -55,7 +55,7 @@
 			},
 			{
 				"name": "support.function",
-				"match": "(?<=process|prepass|perform|endproc)\\s\\w*?\\s"
+				"match": "(?<=process|prepass|perform|endproc|endpass)\\s\\w*?\\s"
 			},
 			{
 				"name": "support.function",

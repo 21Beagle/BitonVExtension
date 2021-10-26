@@ -58,12 +58,12 @@
 			"prepass $1",
 			"\tsort ${8|str,strd,num,numd|} $9; break edit \"\" ${6:thendo ${2}} ${7:firstdo ${4}}",
 			"\tpush $10\n",
-			"${3:\tprocess ${2}\n\t\t\n\tendproc !${2}!}",
+			"${3:\tprocess ${2}\n\t\t\n\tendproc ${2}}",
 			"\tprocess detail",
 			"\t\t",
-			"\tendproc !detail!",
-			"${5:\tprocess ${4}\n\t\t\n\tendproc !${4}!}",
-			"endpass !$1!"
+			"\tendproc detail",
+			"${5:\tprocess ${4}\n\t\t\n\tendproc ${4}}",
+			"endpass $1"
 		],
 		"description": "Creates a complete prepass template with three process, a push statement and a sort statement"
 	},
@@ -499,6 +499,19 @@
 			"set debug = concat(debug, \", \")",
 			"set debug = concat(debug, $1)",
 			"$0"
+		]
+	},
+	"create delete": {
+		"prefix": "if rc sne",
+		"body": [
+			"if rc sne \"\"",
+
+			"\tset rc = poolcopy(\"$1\")",
+			"",
+			"\tset rc = delete(\"$1\")",
+			"\tset rc = create(\"$1\")",
+		"endif",
+		"$0"
 		]
 	}
 }
