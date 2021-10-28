@@ -22,9 +22,14 @@
 		"keywords": {
 			"patterns": [
 			{
-				"name": "variable.other.constant",
-				"match": "((?<=(\\(|,|\\*|/|\\+|-))|(?<=->))\\s*?\\b\\w*?\\s\\s*?(\\b\\w*.?\\s*?)*?(\\w\\w*.?\\s*?)((?=(\\)|,|\\*|/|\\+|-|\\[)|(?=->)))"
+				"name": "variable",
+				"match": "\\b(check maxsize|ba maxsize|ba array|ba check|ba index|ba add|carray|carray|cdelim|ad PreChange|ad PostChange|ad Added|ad Removed|ad AllChanges|ad Balance|ad TotalChanges|indate|outdate|bitondate|nanotime|basedir)\\b"
 			},
+			{
+				"name": "variable.other.constant",
+				"match": "((?<=(\\(|,|\\*|/|\\+|-))|(?<=->))\\s*?\\b\\w*?\\b\\s\\s*?(\\b\\w*?\\b\\s*)*?\\b\\w*?\\b\\s*?((?=(\\)|,|\\*|/|\\+|-|\\[)|(?=->)))"
+			},
+
 			{
 				"name": "keyword.control",
 				"match": "\\s*?\\b(then|if|else|endif|dowhile|enddo|printif|elseprint|elseif|or|and|when)\\s"
@@ -34,15 +39,15 @@
 				"match": "\\b(process|endproc|prepass|endpass|perform|thendo|firstdo)\\b"
 			},
 			{
-				"name": "support.class",
+				"name": "meta.return-type",
 				"match": "^\\s*?(control|select|keys|keysfrom|print|sort)\\b"
 			},
 			{
-				"name": "support.class",
+				"name": "support.type",
 				"match": "\\b(break)\\b"
 			},
 			{
-				"name": "support.class",
+				"name": "support.type",
 				"match": "\\b(output|input)\\s*?$"
 			},
 			{
@@ -59,11 +64,11 @@
 			},
 			{
 				"name": "support.function",
-				"match": "(?<=firstdo\\s)\\b\\w.*?(\\s|(?=thendo)|(?=!))"
+				"match": "(?<=(firstdo\\s|firstdo=))\\s*?\\w.*?(\\s|(?=thendo)|(?=!))"
 			},
 			{
 				"name": "support.function",
-				"match": "(?<=thendo\\s)\\b\\w.*?(\\s|(?=firstdo)|(?=!))"
+				"match": "(?<=(thendo\\s|thendo=))\\s*?\\w.*?(\\s|(?=firstdo)|(?=!))"
 			},
 			{
 				"name": "entity.name.tag.css",
@@ -74,12 +79,12 @@
 				"match": "\\s*?(scrap|putsort|edit)\\b"
 			},			
 			{
-				"name": "keyword.operator",
+				"name": "emphasis",
 				"match": "\\b(eq|ne|gt|ge|lt|le|seq|sne|sgt|slt|sle|str|strd|num|numd)\\b"
 			},
 			{
-				"name": "constant.numeric",
-				"match": "\\s*?(default|spool|newpage|dontscrap|attribute|default|calculate|prompt|validation)\\b"
+				"name": "keyword.other.unit",
+				"match": "\\s*?(default|spool|newpage|pagereset|dontscrap|attribute|calculate|prompt|validation)\\b"
 			},
 			{
 				"name": "storage",
@@ -87,7 +92,7 @@
 			
 			},
 			{
-				"name": "support.class",
+				"name": "meta.return-type",
 				"match": "\\s*?(?:#include|include).*?($|;)"
 			},
 			{
@@ -98,7 +103,7 @@
 				"name": "constant.numeric",
 				"match": "(?<=\\=\\<).*?(?=[A-Z])"
 			},
-			{
+						{
 				"name": "variable",
 				"match": "\\b[A-Z][A-Z]+\\b"
 			},

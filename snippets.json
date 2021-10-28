@@ -513,6 +513,155 @@
 		"endif",
 		"$0"
 		]
+	},
+	"buildemptyarray.inc": {
+		"prefix": "buildemptyarray.inc",
+		"body": [
+			"set (ba maxsize) = $1",
+			"set (ba array) = $2",
+			"#include buildemptyarray.inc",
+			"set $3 = (ba array)",
+			"$0"
+		],
+		"description": "Creates an empty array of size (ba maxsize). The array is output as (ba array)"
+	},
+	"getarrayindex.inc": {
+		"prefix": "getarrayindex.inc",
+		"body": [
+			"set (check maxsize) = $1",
+			"set (ba array) = $2",
+			"#include getarrayindex.inc",
+			"set $3 = (ba index)",
+			"$0"
+		],
+		"description": "Returns the index of a value in an array. The index is output as (ba index), if the value does not exist in the array the -1 is returned. (ba check) is the value you wish to check, (ba array) is the array you wish to search within."
+	},
+	"setarrayindex.inc": {
+		"prefix": "setarrayindex.inc",
+		"body": [
+			"set (ba add) = $1",
+			"set (ba array) = $2",
+			"set (ba index) = $3",
+			"#include setarrayindex.inc",
+			"set $4 = (ba array)",
+			"$0"
+		],
+		"description": "Returns an array with value: (ba add), at index: (ba index), into an array: (ba array)."
+	},
+	"delarrayindex.inc": {
+		"prefix": "delarrayindex.inc",
+		"body": [
+			"set (ba index) = $1",
+			"set (ba array) = $2",
+			"#include delarrayindex.inc",
+			"set $3 = (ba array)",
+			"$0"
+		],
+		"description": "Deletes whatever value is at index: (ba index) in array: (ba array)"
+	},
+	"arrayconcat.inc": {
+		"prefix": "arrayconcat.inc",
+		"body": [
+			"set (carray) = $1",
+			"set (citem) = $2",
+			"set (cdelim) = $3",
+			"#include arrayconcat.inc",
+			"set $4 = (carray)",
+			"$0"
+		],
+		"description": "We concatenate array: (carray), with value: (citem). The array's delimiter value (cdelim) must be defined."
+	},
+	"arraydiff.inc": {
+		"prefix": "arraydiff.inc",
+		"body": [
+			"set (ad PreChange) = $1",
+			"set (ad PostChange) = $2",
+			"#include arraydiff.inc",
+			"set $3 = (ad Added)",
+			"set $4 = (ad Removed)",
+			"set $5 = (ad AllChanges)",
+			"set $6 = (ad TotalChanges)",
+			"$0"
+		],
+		"description": "This include file returns the difference between two arrays in V. (ad PreChange) The first array. (ad PostChange) The array you wish to check against. (ad Added) All the elements which have been added. (ad Removed) all the elements which have been removed. (ad AllChanges) An array of all elements from both arrays. (ad Balance) How many more/fewer elements are there now (PostChanges) than there were before (PreChanges).(ad TotalChanges) The total length of the two arrays"
+	},
+	"trandate.inc": {
+		"prefix": "trandate.inc",
+		"body": [
+			"#include trandate.inc",
+			"set $1 = (transaction trade date)",
+			"$0"
+		],
+		"description": "Asks the user for the (transaction trade date). The include will then check all the necessary conditions to ensure the date the user is inputting is acceptable"
+	},
+	"mmddyyyy2biton.inc": {
+		"prefix": "mmddyyyy2biton.inc",
+		"body": [
+			"set (indate) = $1",
+			"#include mmddyyyy2biton.inc",
+			"set $2 = (bitondate)",
+			"$0"
+		],
+		"description": "This include file will convert a mm/dd/yyyy date into a BITON date. e.g 07/19/72 or 07/19/1972 to 19 Jul 1972"
+	},
+	"yyyymmdd2biton.inc": {
+		"prefix": "yyyymmdd2biton.inc",
+		"body": [
+			"set (indate) = $1",
+			"#include yyyymmdd2biton.inc",
+			"set $2 = (bitondate)",
+			"$0"
+		],
+		"description": "This include file will convert a YYYYMMDD date into a BITON date. e.g 19720719 to 19 Jul 1972"
+	},
+	"ddmmyyyy2biton.inc": {
+		"prefix": "ddmmyyyy2biton.inc",
+		"body": [
+			"set (indate) = $1",
+			"#include ddmmyyyy2biton.inc",
+			"set $2 = (bitondate)",
+			"$0"
+		],
+		"description": "This include file will convert a dd/mm/yyyy date into a BITON date. e.g 19/07/72 or 19/07/1972 to 19 Jul 1972"
+	},
+	"yyyymmdd.inc": {
+		"prefix": "yyyymmdd.inc",
+		"body": [
+			"set (indate) = $1",
+			"#include yyyymmdd.inc",
+			"set $2 = (outdate)",
+			"$0"
+		],
+		"description": "Converts biton date to YYYYMMDD format."
+	},
+	"autopridate.inc": {
+		"prefix": "autopridate.inc",
+		"body": [
+			"set (indate) = $1",
+			"#include autopridate.inc",
+			"set $2 = (outdate)",
+			"$0"
+		],
+		"description": "This include file will convert a dd/mm/yyyy date into a BITON date."
+	},
+	"nanotime.inc": {
+		"prefix": "nanotime.inc",
+		"body": [
+			"#include nanotime.inc",
+			"set $1 = (nanotime)",
+			"$0"
+		],
+		"description": "Returns a string of the current time in the format \"HH:MM:SS.NNNNNNNNN\" where the N's represent nanoseconds."
+	},
+	"basedir.inc": {
+		"prefix": "basedir.inc",
+		"body": [
+			"#include basedir.inc",
+			"set $1 = (basedir)",
+			"$0"
+		],
+		"description": "Stores the base-directory in the variable (basedir)"
 	}
 }
+
 

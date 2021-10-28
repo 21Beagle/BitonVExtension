@@ -66,3 +66,7 @@ All notable changes to the "v" extension will be documented in this file.
 - All the snippets for functions have the description from the wiki attached to them so you no longer need to go to the wiki to remind yourself.
 
 - dowhile snippet added as per Harry's request.
+
+## [1.4.15]
+
+- Added include files to snippets.
