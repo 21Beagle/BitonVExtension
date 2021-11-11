@@ -1,0 +1,49 @@
+{
+    "comments": {
+        // symbols used for start and end a block comment. Remove this entry if your language does not support block comments
+        "blockComment": [ "!", "!" ]
+    },
+    // symbols used as brackets
+    "brackets": [
+        ["[", "]"],
+        ["(", ")"]
+    ],
+    // symbols that are auto closed when typing
+    "autoClosingPairs": [
+        {"open": "[", "close": "]"},
+        {"open": "(", "close": ")"},
+        {"open": "\"", "close": "\""},
+        {"open": "'", "close": "'"},
+        {"open": "!", "close": "!"}
+    ],
+    // symbols that can be used to surround a selection
+    "surroundingPairs": [
+        {"open": "[", "close": "]"},
+        {"open": "(", "close": ")"},
+        {"open": "\"", "close": "\""},
+        {"open": "'", "close": "'"},
+        {"open": "!", "close": "!"},
+        {"open": "process", "close": "endproc"},
+        {"open": "prepass", "close": "endpass"},
+        {"open": "dowhile", "close": "enddo"},
+        {"open": "if", "close": "endif"},
+
+
+    ],
+    "indentationRules": {
+        "increaseIndentPattern": "^\\s*?(?:process|prepass|if|dowhile|else).*?$",
+        "decreaseIndentPattern": "^\\s*?(?:endproc|endpass|endif|enddo|else).*?$"
+    },
+    "folding": {
+        "markers": {
+            "start": "^\\s*?(?:process).*?$",
+            "end": "^\\s*?(?:endproc).*?$"
+        },
+    },
+    "onEnterRules": [
+        {
+            "beforeText": "^\\s*(?:else).*?$",
+            "action": { "indent": "indent" }
+        }
+    ]
+}
