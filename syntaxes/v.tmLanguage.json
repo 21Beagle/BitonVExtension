@@ -34,9 +34,13 @@
 				"name": "keyword.control",
 				"match": "\\s*?\\b(then|if|else|endif|dowhile|enddo|printif|elseprint|elseif|or|and|when)\\s"
 			},
+						{
+				"name": "invalid.prepass",
+				"match": "\\b(prepass|endpass)\\b"
+			},
 			{
 				"name": "string.regexp",
-				"match": "\\b(process|endproc|prepass|endpass|perform|thendo|firstdo)\\b"
+				"match": "\\b(process|endproc|perform|thendo|firstdo)\\b"
 			},
 			{
 				"name": "meta.return-type",
