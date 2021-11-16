@@ -3,7 +3,7 @@
 	"publisher": "jackbeagle",
 	"displayName": "V Language Support",
 	"description": "V Language syntax support for Biton System Consultants",
-	"version": "1.4.25",
+	"version": "1.4.26",
 	"engines": {
 		"vscode": "^1.58.0"
 	},
@@ -53,14 +53,6 @@
 				"language": "v",
 				"scopeName": "source.v",
 				"path": "./syntaxes/v.tmLanguage.json"
-			}
-		],
-		"semanticTokenScopes": [
-			{
-				"language": "v",
-				"scopes": {
-				"property.readonly": ["prepass.v"]
-				}
 			}
 		]
 	},

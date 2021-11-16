@@ -319,7 +319,9 @@
 			"sort str \"1\"\n\n",
 			"process detail",
 			"\t$0",   
-			"endproc"
+			"endproc",
+			"",
+			"print \"\""
 		],
 		"description": "template for running program once"
 	},
