@@ -100,7 +100,7 @@
 			},
 			{
 				"name": "storage",
-				"match": "^\\s*?(setpool|clearpool|set|variable|list|push)\\s"
+				"match": "\\b(setpool|clearpool|set|variable|list|push)\\b"
 			
 			},
 			{
