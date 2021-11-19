@@ -26,6 +26,11 @@
 				"match": "\\b(check maxsize|ba maxsize|ba array|ba check|ba index|ba add|carray|carray|cdelim|ad PreChange|ad PostChange|ad Added|ad Removed|ad AllChanges|ad Balance|ad TotalChanges|indate|outdate|bitondate|nanotime|basedir)\\b"
 			},
 			{
+				"name": "keyword.other.unit",
+				"match": "((?<=(\\(|,|\\*|/|\\+|-|\\s))|(?<=->))\\s*?(\\b\\w*?\\b\\s*)*?\\b\\w*?\\b\\s*?((?=\\[))"
+			},
+
+			{
 				"name": "variable.other.constant",
 				"match": "((?<=(\\(|,|\\*|/|\\+|-|\\s))|(?<=->))\\s*?\\b\\w*?\\b\\s\\s*?(\\b\\w*?\\b\\s*)*?\\b\\w*?\\b\\s*?((?=(\\)|,|\\*|/|\\+|-|\\[)|(?=->)))"
 			},

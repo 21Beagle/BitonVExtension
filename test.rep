@@ -12,3 +12,19 @@ prepass asdasdad
         
     endproc 
 endpass asdasdad    
+
+set (TransactionType)=(tickets type)
+set (PortfolioCode)=(tickets portfolio[sub])
+set (TranNo)=(tickets tranno[sub])
+set (CashType)=(tickets cash type)
+set (Nominal[sub])=(tickets pfolio nominal[sub])
+set (SecurityCode[sub])=(tickets pfolio bank ac[sub])
+set (UpdateDate)=(tickets update date)
+set (UpdateTime)=(tickets update time)
+set (EntryDate)=(tickets entry date)
+set (EntryTime)=(tickets entry time)
+set (CashSubType)=(tickets cash sub type)
+set (Notes)=(tickets notes)
+set (RelatedSecurity)=(tickets related security[sub])
+set (RelatedHolding[sub])=(tickets related holding[sub])
+set (PortfolioExRate)=(tickets pfolio ex rate[sub])
