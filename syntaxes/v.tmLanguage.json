@@ -65,7 +65,7 @@
 			},
 			{
 				"name": "support.function",
-				"match": "\\b(display|accept)\\b"
+				"match": "\\b(display|accept|today)\\b"
 			},
 			{
 				"name": "strong",

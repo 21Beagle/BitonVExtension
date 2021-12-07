@@ -25,6 +25,7 @@
         {"open": "prepass", "close": "endpass"},
         {"open": "dowhile", "close": "enddo"},
         {"open": "if", "close": "endif"},
+        {"open": "if", "close": "else"}
     ],
     "colorizedBracketPairs": [
         [
