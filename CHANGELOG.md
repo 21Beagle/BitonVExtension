@@ -70,3 +70,11 @@ All notable changes to the "v" extension will be documented in this file.
 ## [1.4.15]
 
 - Added include files to snippets.
+
+## [1.4.29]
+
+- Now data dictionary fields have their own syntax highlighting.
+
+## [1.4.31]
+
+- Arrays index numbers have their own syntax highlighting.

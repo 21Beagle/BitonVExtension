@@ -1,36 +1,16 @@
-# v README
-Support package for the v programming language.
+# V Language Support
+Support extension for the V programming language used at Biton System Consultants.
 
 ## Features
 
-Give pretty colours and useful syntax for the v programming language used at Biton. Some shortcuts for common v functions
+Syntax highlighting and code snippets. 
 
-- If you type " rc" you get a typed out "set (rc) = " which saves time on creating csvs
+### Every function on the wiki asat 7/12/2021 included as a snippet with a description.
 
-- rcoef gives "set (rc) = OpenExtractFile("", "", "", "")"
+### Every include file on the wiki asat 7/12/2021 included as a snippet with a description.
 
-- rcch gives set "(rc) = ColumnHeading("", "", "", "", "")"
+##### Github: https://github.com/21Beagle/BitonVExtension
 
-- rcsc gives set "(rc) = SaveCell("", "", )"
+#### JB
 
-- rcnr" gives "set (rc) = NextRow("")"
 
-- rccef gives "set (rc) = CloseExtractFile("")"
-
-- All of these shortcuts exist without the rc prefix, also.
-
-- oef gives "OpenExtractFile("", "", "", "")"
-
-- ch gives "ColumnHeading("", "", "", "", "")"
-
-- sc gives "SaveCell("", "", )"
-
-- nr gives "NextRow("")"
-
-- cef gives "CloseExtractFile("")"
-
-- A prepass template shortcut type prepass" to have a prepass with a sort statement, 3 processes, and a push statement.
-
-- DEBUG shortcuts. "dbgo" gives the DEBUG output line for the top of the file. "dbg" gives a "set DEBUG = " line.
-
-All of these shortcuts and more exist as snippets. Often, they will complete certain common function values for you.
